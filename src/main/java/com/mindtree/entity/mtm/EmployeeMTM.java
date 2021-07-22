@@ -2,6 +2,7 @@ package com.mindtree.entity.mtm;
 
 import java.util.List;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -10,7 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 
 @Entity
 public class EmployeeMTM {
@@ -19,11 +20,9 @@ public class EmployeeMTM {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String name;
-	@ManyToMany
-	@JsonBackReference
-	@JoinTable(name = "EMPLOYEE_ADDRESS",
-			joinColumns = @JoinColumn(name = "EMPLOYEE_ID"),
-			inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JsonManagedReference
+	@JoinTable(name = "EMPLOYEE_ADDRESS", joinColumns = @JoinColumn(name = "EMPLOYEE_ID"), inverseJoinColumns = @JoinColumn(name = "ADDRESS_ID"))
 	private List<AddressMTM> address;
 
 	public int getId() {

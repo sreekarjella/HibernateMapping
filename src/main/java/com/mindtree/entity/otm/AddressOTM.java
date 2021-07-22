@@ -1,5 +1,6 @@
 package com.mindtree.entity.otm;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,7 +16,7 @@ public class AddressOTM {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String address;
-	@ManyToOne
+	@ManyToOne(cascade = CascadeType.ALL)
 	@JsonBackReference
 	private EmployeeOTM employee;
 

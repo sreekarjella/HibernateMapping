@@ -1,5 +1,6 @@
 package com.mindtree.entity.oto;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -14,7 +15,7 @@ public class Address {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private int id;
 	private String address;
-	@OneToOne
+	@OneToOne(cascade = CascadeType.ALL)
 	@JsonBackReference
 	private Employee employee;
 	public int getId() {
